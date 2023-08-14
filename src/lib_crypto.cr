@@ -1,3 +1,5 @@
+require "openssl_ext"
+
 lib LibCrypto
   enum PKEY
     # https://github.com/openssl/openssl/blob/f2f7cff20377f7402b132a19d953a9d998be26aa/include/openssl/evp.h#L62
@@ -18,15 +20,13 @@ lib LibCrypto
     engine : ENGINE,
     key : LibC::Char*,
     keylen : LibC::SizeT
-  ) : EVP_PKEY*
+  ) : LibCrypto::EvpPKey*
 
   fun evp_pkey_get_raw_public_key = EVP_PKEY_get_raw_public_key(
     key : EVP_PKEY,
     pub : LibC::Char*,
     len : LibC::SizeT*
   ) : LibC::Int
-
-  fun evp_pkey_free = EVP_PKEY_free(key : ::Pointer(EVP_PKEY)) : Void
 
   fun evp_pkey_ctx_free = EVP_PKEY_CTX_free(key : EVP_PKEY_CTX) : Void
 
