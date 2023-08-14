@@ -26,7 +26,7 @@ lib LibCrypto
     len : LibC::SizeT*
   ) : LibC::Int
 
-  fun evp_pkey_free = EVP_PKEY_free(key : EVP_PKEY*) : Void
+  fun evp_pkey_free = EVP_PKEY_free(key : ::Pointer(EVP_PKEY)) : Void
 
   fun evp_pkey_ctx_free = EVP_PKEY_CTX_free(key : EVP_PKEY_CTX) : Void
 
